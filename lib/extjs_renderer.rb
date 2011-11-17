@@ -16,6 +16,7 @@ module ExtjsRenderer
       root = options && options.has_key?(:root) ? options[:root] : resource.last.class.name.downcase
 
       json = '{"total":'+total.to_s+',"'+root+'":'+resource.to_json(options)+'}'
+    
     else
       # set root to passed or 'data' which is used by extjs to load forms
       root = options && options.has_key?(:root) ? options[:root] : 'data'
