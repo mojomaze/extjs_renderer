@@ -4,6 +4,6 @@ Gem::Specification.new do |s|
   s.name = "extjs_renderer"
   s.summary = "Rails 3 Renderer to send JSON compatible with Sencha Extjs 3+"
   s.description = "Rails 3 Renderer to send JSON compatible with Sencha Extjs 3+"
-  s.files = Dir["{app,lib,config}/**/*"] + ["MIT-LICENSE", "Rakefile", "Gemfile", "README.rdoc"]
+  s.files = Dir["{app,lib,config}/**/*"] + ["MIT-LICENSE", "Rakefile", "Gemfile", "README.md"]
   s.version = "0.0.1"
 end
