@@ -5,6 +5,7 @@ Dummy::Application.routes.draw do
   get "orders/with_method"
   get "orders/only_and_method"
   get "orders/except_and_method"
+  get "orders/index_with_nested_resource"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -18,6 +19,7 @@ Dummy::Application.routes.draw do
   match 'orders/:id/edit_with_method' => 'orders#edit_with_method'
   match 'orders/:id/edit_only_and_method' => 'orders#edit_only_and_method'
   match 'orders/:id/edit_except_and_method' => 'orders#edit_except_and_method'
+  match 'orders/:id/edit_with_nested_resource' => 'orders#edit_with_nested_resource'
   
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase

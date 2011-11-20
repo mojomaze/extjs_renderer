@@ -9,6 +9,6 @@ FactoryGirl.define do
   end
   
   factory :order_with_items, :parent => :order do |order|
-    order.after_create {|o| 5.times { Factory.build(:item, :order => o) } }
+    order.after_create {|o| 5.times { Factory.create(:item, :order => o) } }
   end
 end

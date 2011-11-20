@@ -7,6 +7,13 @@ class OrdersController < ApplicationController
     end
   end
   
+  def index_with_nested_resource
+    @orders = Order.order('name')
+    respond_with @orders do |format|
+      format.json { render :extjs => @orders, :include => :items }
+    end
+  end
+  
   def change_root
     @orders = Order.order('name')
     respond_with @orders do |format|
@@ -48,21 +55,21 @@ class OrdersController < ApplicationController
   def edit
     @order = Order.find(params[:id])
     respond_with @order do |format|
-      format.any { render :extjs => @order }
+      format.json { render :extjs => @order }
     end
   end
   
   def edit_change_root
     @order = Order.find(params[:id])
     respond_with @order do |format|
-      format.any { render :extjs => @order, :root => 'custom_root' }
+      format.json { render :extjs => @order, :root => 'custom_root' }
     end
   end
   
   def edit_with_method
     @order = Order.find(params[:id])
     respond_with @order do |format|
-      format.any { render :extjs => @order, :root => 'custom_root',
+      format.json { render :extjs => @order, :root => 'custom_root',
                         :methods => :custom }
     end
   end
@@ -70,7 +77,7 @@ class OrdersController < ApplicationController
   def edit_only_and_method
     @order = Order.find(params[:id])
     respond_with @order do |format|
-      format.any { render :extjs => @order, :root => 'custom_root',
+      format.json { render :extjs => @order, :root => 'custom_root',
                         :methods => :custom, :only => [:id, :name] }
     end
   end
@@ -78,8 +85,15 @@ class OrdersController < ApplicationController
   def edit_except_and_method
     @order = Order.find(params[:id])
     respond_with @order do |format|
-      format.any { render :extjs => @order, :root => 'custom_root',
+      format.json { render :extjs => @order, :root => 'custom_root',
                         :methods => :custom, :except => [:created_at, :updated_at] }
+    end
+  end
+  
+  def edit_with_nested_resource
+    @order = Order.find(params[:id])
+    respond_with @order do |format|
+      format.json { render :extjs => @order, :include => :items }
     end
   end
 
