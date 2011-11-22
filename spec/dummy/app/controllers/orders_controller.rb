@@ -52,6 +52,21 @@ class OrdersController < ApplicationController
     end
   end
   
+  # pagination
+  def index_will_paginate
+    @orders = Order.where("name LIKE ?", '%order%').paginate(:page => 1, :per_page => 25)
+    respond_with @orders do |format|
+      format.json { render :extjs => @orders }
+    end
+  end
+  
+  def index_kaminari_pagination
+    @orders = Order.where("name LIKE ?", '%order%').page(1)
+    respond_with @orders do |format|
+      format.json { render :extjs => @orders }
+    end
+  end
+  
   def edit
     @order = Order.find(params[:id])
     respond_with @order do |format|

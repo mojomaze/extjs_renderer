@@ -102,6 +102,36 @@ describe OrdersController do
     end
   end
   
+  #UNCOMMENT config/application.rb -> require "will_paginate" to test
+  context "Pagination with will_paginate" do
+      describe "GET 'index_will_paginate'" do
+        it "responds with total_entries" do
+          50.times{ |n| Factory.create(:order) }
+          50.times{ |n| Factory.create(:order, :name => "Outlier #{n}") }
+          xhr :get, :index_will_paginate, :format => :json
+          json = ActiveSupport::JSON.decode(response.body)
+          json['total'].should eq(50)
+          json['order'].should_not be_nil
+          json_order = json['order'].size.should eq(25)
+        end
+      end
+    end
+  
+  #UNCOMMENT config/application.rb -> require "kaminari" to test
+  # context "Pagination with kaminai" do
+  #     describe "GET 'index_kaminari_pagination'" do
+  #       it "responds with total_count" do
+  #         50.times{ |n| Factory.create(:order) }
+  #         50.times{ |n| Factory.create(:order, :name => "Outlier #{n}") }
+  #         xhr :get, :index_kaminari_pagination, :format => :json
+  #         json = ActiveSupport::JSON.decode(response.body)
+  #         json['total'].should eq(50)
+  #         json['order'].should_not be_nil
+  #         json_order = json['order'].size.should eq(25)
+  #       end
+  #     end
+  #   end
+  
   context "Single Resource" do
   
     describe "GET 'edit'" do

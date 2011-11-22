@@ -6,6 +6,8 @@ Dummy::Application.routes.draw do
   get "orders/only_and_method"
   get "orders/except_and_method"
   get "orders/index_with_nested_resource"
+  get "orders/index_will_paginate"
+  get "orders/index_kaminari_pagination"
   
   get "items/index"
 

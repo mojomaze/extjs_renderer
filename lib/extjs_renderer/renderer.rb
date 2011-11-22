@@ -6,6 +6,8 @@ module ExtjsRenderer
       # get or set the total
       if options && options.has_key?(:total)
         total = options[:total]  # set if passed
+      elsif resource.respond_to?(:total_count)
+        total = resource.total_count # kaminari total found
       elsif resource.respond_to?(:total_entries)
         total = resource.total_entries # will_paginate total found
       else

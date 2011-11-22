@@ -7,6 +7,9 @@ require "action_view/railtie"
 require "action_mailer/railtie"
 
 Bundler.require
+
+#require "kaminari"
+require "will_paginate"
 require "extjs_renderer"
 
 module Dummy
