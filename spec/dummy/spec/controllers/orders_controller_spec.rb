@@ -17,6 +17,14 @@ describe OrdersController do
         json['total'].should eq(1)
         json['order'].should_not be_nil
       end
+      
+      it "responds with correct root with no records" do
+        xhr :get, :index, :format => :json
+        json = ActiveSupport::JSON.decode(response.body)
+        json['total'].should eq(0)
+        json['order'].should_not be_nil
+      end
+      
     end
   
     describe "GET 'change_root'" do

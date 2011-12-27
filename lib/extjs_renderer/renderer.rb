@@ -15,7 +15,7 @@ module ExtjsRenderer
       end
 
       # set root to passed or resource
-      root = options && options.has_key?(:root) ? options[:root] : resource.last.class.name.downcase
+      root = options && options.has_key?(:root) ? options[:root] : resource.klass.to_s.downcase
 
       json = '{"total":'+total.to_s+',"'+root+'":'+resource.to_json(options)+'}'
     
